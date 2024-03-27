@@ -7,7 +7,20 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class Driver {
+/**
+ * Main class for processing movie records and navigating through them. This
+ * class contains methods for processing input files, serializing and
+ * deserializing movie records, displaying menus, and navigating through movie
+ * arrays.
+ */
+public class Main {
+
+	/**
+	 * Main method for running the movie database application.
+	 *
+	 * @param args Command-line arguments (not used in this application).
+	 * @throws FileNotFoundException If a file is not found.
+	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		// Initialize scanner for user input
 		Scanner scanner = new Scanner(System.in);
@@ -52,7 +65,14 @@ public class Driver {
 		scanner.close();
 	}
 
-	// Method to process part1
+	/**
+	 * Processes part 1 of the assignment, which involves reading input files,
+	 * validating records, and writing valid and invalid records to separate files.
+	 *
+	 * @param part1  Path to the input manifest file for part 1.
+	 * @param genres Array of genres used for validation.
+	 * @return The path to the output manifest file for part 2.
+	 */
 	public static String do_part1(String part1, String[] genres) {
 		// Initialize part2_manifest file name
 		String part2 = "part2_manifest.txt";
@@ -117,6 +137,18 @@ public class Driver {
 		return part2;
 	}
 
+	/**
+	 * Splits a line of text into fields based on comma separators, handling quoted
+	 * fields properly.
+	 * 
+	 * @param line The input line to be split.
+	 * @return An array of fields extracted from the input line.
+	 * @throws ExcessFieldsException  If more than 10 fields are found in the input
+	 *                                line.
+	 * @throws MissingQuotesException If there are missing quotes in a quoted field.
+	 * @throws MissingFieldsException If fewer than 10 fields are found in the input
+	 *                                line.
+	 */
 	public static String[] splitLine(String line)
 			throws ExcessFieldsException, MissingQuotesException, MissingFieldsException, MissingFieldsException {
 		// Assume there's a reasonable upper limit to detect excess fields
@@ -179,6 +211,27 @@ public class Driver {
 		return fields; // Return the array of fields
 	}
 
+	/**
+	 * Processes a movie record, validates its fields, and writes it to the
+	 * corresponding genre file.
+	 * 
+	 * @param line       The input line representing a movie record.
+	 * @param genres     An array of valid genres.
+	 * @param inputFile  The name of the input file being processed.
+	 * @param lineNumber The line number of the movie record within the input file.
+	 * @throws BadYearException       If the year field is invalid.
+	 * @throws BadTitleException      If the title field is missing.
+	 * @throws BadDurationException   If the duration field is invalid.
+	 * @throws BadGenreException      If the genre field is invalid.
+	 * @throws BadRatingException     If the rating field is invalid.
+	 * @throws BadScoreException      If the score field is invalid.
+	 * @throws BadNameException       If any of the name fields are missing.
+	 * @throws ExcessFieldsException  If more than 10 fields are found in the input
+	 *                                line.
+	 * @throws MissingFieldsException If fewer than 10 fields are found in the input
+	 *                                line.
+	 * @throws MissingQuotesException If there are missing quotes in a quoted field.
+	 */
 	public static void processMovieRecord(String line, String[] genres, String inputFile, int lineNumber)
 			throws BadYearException, BadTitleException, BadDurationException, BadGenreException, BadRatingException,
 			BadScoreException, BadNameException, ExcessFieldsException, MissingFieldsException, MissingQuotesException {
@@ -273,6 +326,19 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Sorts good movie records into separate genre files based on their genre.
+	 * 
+	 * @param part2  The name of the input manifest file for part 2.
+	 * @param genres An array of valid genres.
+	 * @throws FileNotFoundException  If the input file containing good movie
+	 *                                records is not found.
+	 * @throws MissingFieldsException If fewer than 10 fields are found in a movie
+	 *                                record.
+	 * @throws MissingQuotesException If there are missing quotes in a quoted field.
+	 * @throws ExcessFieldsException  If more than 10 fields are found in a movie
+	 *                                record.
+	 */
 	public static void sortGenre(String part2, String[] genres)
 			throws FileNotFoundException, MissingFieldsException, MissingQuotesException, ExcessFieldsException {
 		// Open the file containing good movie records for reading
@@ -311,7 +377,13 @@ public class Driver {
 
 	// Helper methods
 
-	// isInteger method: Checks if a string represents an integer
+	/**
+	 * Checks if a string represents an integer.
+	 * 
+	 * @param str The string to be checked.
+	 * @return {@code true} if the string represents an integer, {@code false}
+	 *         otherwise.
+	 */
 	public static boolean isInteger(String str) {
 		if (str == null) {
 			return false;
@@ -324,7 +396,13 @@ public class Driver {
 		return true;
 	}
 
-	// isDouble method: Checks if a string represents a double
+	/**
+	 * Checks if a string represents a double.
+	 * 
+	 * @param str The string to be checked.
+	 * @return {@code true} if the string represents a double, {@code false}
+	 *         otherwise.
+	 */
 	public static boolean isDouble(String str) {
 		if (str == null) {
 			return false;
@@ -337,6 +415,13 @@ public class Driver {
 		return true;
 	}
 
+	/**
+	 * Reads CSV files containing good movie records, serializes them, and creates a
+	 * manifest file for part 3.
+	 * 
+	 * @param part2 The name of the input manifest file for part 2.
+	 * @return The path of the output manifest file for part 3.
+	 */
 	public static String do_part2(String part2) {
 		// Initialize the output manifest file for part 3
 		String part3 = "part3_manifest.txt";
@@ -404,6 +489,14 @@ public class Driver {
 		return part3;
 	}
 
+	/**
+	 * Reads serialized movie data, deserializes it, and returns a 2D array of Movie
+	 * objects.
+	 * 
+	 * @param part3  The name of the input manifest file for part 3.
+	 * @param genres An array of valid genres.
+	 * @return A 2D array containing Movie objects grouped by genre.
+	 */
 	public static Movie[][] do_part3(String part3, String[] genres) {
 		Movie[][] movies = null;
 		try {
@@ -444,6 +537,14 @@ public class Driver {
 		return movies;
 	}
 
+	/**
+	 * Displays the main menu for the movie database application.
+	 *
+	 * @param scanner   Scanner object for user input.
+	 * @param moviesArr 2D array containing movie records.
+	 * @param genres    Array of genres.
+	 * @param choice    Index of the selected genre.
+	 */
 	public static void displayMainMenu(Scanner scanner, Movie[][] moviesArr, String[] genres, int choice) {
 		// Display the main menu options
 		System.out.println("\n\nWelcome to the Movie Database by Benjamin Liu and Vincent de Serres!");
@@ -470,6 +571,13 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Displays the sub-menu for selecting a genre.
+	 *
+	 * @param scanner   Scanner object for user input.
+	 * @param moviesArr 2D array containing movie records.
+	 * @param genres    Array of genres.
+	 */
 	public static void displaySubMenu(Scanner scanner, Movie[][] moviesArr, String[] genres) {
 		// Display the genre sub-menu options
 		System.out.println("-----------------------------\n\t\tGenre Sub-Menu\n-----------------------------");
@@ -496,6 +604,14 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Handles movie navigation based on user input.
+	 *
+	 * @param scanner   Scanner object for user input.
+	 * @param moviesArr 2D array containing movie records.
+	 * @param genres    Array of genres.
+	 * @param choice    Index of the selected genre.
+	 */
 	public static void movieNavigation(Scanner scanner, Movie[][] moviesArr, String[] genres, int choice) {
 		// Display the movie navigation menu
 		System.out.println("-----------------------------\n\t\tMovie Navigation\n-----------------------------");
@@ -513,6 +629,16 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Navigates through movie records based on user input.
+	 *
+	 * @param n         Number of records to navigate.
+	 * @param movies    Array of Movie objects.
+	 * @param choice    Index of the selected genre.
+	 * @param scanner   Scanner object for user input.
+	 * @param moviesArr 2D array containing movie records.
+	 * @param genres    Array of genres.
+	 */
 	public static void navigateMovies(int n, Movie[] movies, int choice, Scanner scanner, Movie[][] moviesArr,
 			String[] genres) {
 		int currentPosition = 0; // Current position within the movie array
@@ -564,6 +690,14 @@ public class Driver {
 		movieNavigation(scanner, moviesArr, genres, choice);
 	}
 
+	/**
+	 * Displays a movie record.
+	 *
+	 * @param index             Index of the movie record to display.
+	 * @param movies            Array of Movie objects.
+	 * @param isCurrentPosition True if the movie is the current position, false
+	 *                          otherwise.
+	 */
 	public static void displayMovieRecord(int index, Movie[] movies, boolean isCurrentPosition) {
 		// Display movie record
 		System.out.println(movies[index].toString());
