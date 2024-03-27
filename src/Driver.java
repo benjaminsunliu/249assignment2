@@ -8,12 +8,12 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Main class for processing movie records and navigating through them. This
+ * Driver class for processing movie records and navigating through them. This
  * class contains methods for processing input files, serializing and
  * deserializing movie records, displaying menus, and navigating through movie
  * arrays.
  */
-public class Main {
+public class Driver {
 
 	/**
 	 * Main method for running the movie database application.
