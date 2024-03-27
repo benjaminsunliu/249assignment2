@@ -1,8 +1,10 @@
 // -----------------------------------------------------
 // Assignment 2
 // Question: Movie class
-// Written by: Vincent de Serres-40272920 and Benjamin Liu-
+// Written by: Vincent de Serres-40272920 and Benjamin Liu-40280899
 // -----------------------------------------------------
+/*General Explanation
+ * */
 
 import java.io.Serializable;
 

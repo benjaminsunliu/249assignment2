@@ -1,10 +1,13 @@
 // -----------------------------------------------------
 // Assignment 2
 // Question: Driver class
-// Written by: Vincent de Serres-40272920 and Benjamin Liu-
+// Written by: Vincent de Serres-40272920 and Benjamin Liu-40280899
 // -----------------------------------------------------
+/*General Explanation
+* */
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -38,10 +41,10 @@ public class Driver {
 		PrintWriter p1Manifest = new PrintWriter(new FileOutputStream("part1_manifest.txt"), true);
 
 		// Write input file names to part1_manifest.txt
-		for (int i = 0; i < inputFiles.length; i++) {
-			p1Manifest.println(inputFiles[i]);
-			p1Manifest.flush();
-		}
+        for (String inputFile : inputFiles) {
+            p1Manifest.println(inputFile);
+            p1Manifest.flush();
+        }
 
 		// Close the PrintWriter for part1_manifest.txt
 		p1Manifest.close();
@@ -204,9 +207,11 @@ public class Driver {
 			throw new MissingFieldsException("Error: Missing fields. Expected 10, but found " + fieldCount + ".");
 		}
 
-		// Since fieldCount is exactly 10, we can directly use tempFields
-		String[] fields = new String[fieldCount];
-		System.arraycopy(tempFields, 0, fields, 0, fieldCount);
+        // Since fieldCount is exactly 10, we can directly use tempFields
+        String[] fields = new String[fieldCount];
+        fields = Arrays.copyOf(tempFields, fieldCount); // Copy the first fieldCount elements from tempFields to fields
+
+        //System.arraycopy(tempFields, 0, fields, 0, fieldCount);
 
 		return fields; // Return the array of fields
 	}
@@ -288,9 +293,9 @@ public class Driver {
 			}
 
 			// Check rating
-			if (!(fields[4].toLowerCase().equals("pg") || fields[4].toLowerCase().equals("unrated")
-					|| fields[4].toLowerCase().equals("g") || fields[4].toLowerCase().equals("r")
-					|| fields[4].toLowerCase().equals("pg-13") || fields[4].toLowerCase().equals("nc-17"))) {
+			if (!(fields[4].equalsIgnoreCase("pg") || fields[4].equalsIgnoreCase("unrated")
+					|| fields[4].equalsIgnoreCase("g") || fields[4].equalsIgnoreCase("r")
+					|| fields[4].equalsIgnoreCase("pg-13") || fields[4].equalsIgnoreCase("nc-17"))) {
 				throw new BadRatingException();
 			}
 			// Check score
@@ -507,13 +512,12 @@ public class Driver {
 			while (fileScanner.hasNextLine()) {
 				int arrsize = 0;
 				// Count the number of movies for each genre
-				for (int i = 0; i < genres.length; i++) {
-					String genre = genres[i];
-					if (countScanner.nextLine().contains(genre)) {
-						arrsize++;
-					}
+                for (String genre : genres) {
+                    if (countScanner.nextLine().contains(genre)) {
+                        arrsize++;
+                    }
 
-				}
+                }
 				// Initialize the 2D array to store movies
 				movies = new Movie[arrsize][];
 
@@ -648,42 +652,51 @@ public class Driver {
 	        displayMainMenu(scanner, moviesArr, genres, choice);
 	        return; // Exit the method
 	    }
+		if (movies.length == 0) {
+			System.out.println("There are no movies in this genre.");
+			displayMainMenu(scanner, moviesArr, genres, choice); // Go back to the main menu
+			return; // Exit the method
+		}
 
 	    // Display the current movie record
-	    displayMovieRecord(currentPosition, movies, true); // Highlight current movie
-
+		if(currentPosition >= Math.abs(n) - 1 && currentPosition + n - 1 < movies.length){
+			displayMovieRecord(currentPosition, movies, true); // Highlight current movie
+		}
 	    // Adjust the navigation based on the value of n
-	    if (n < 0) {
-	        // Moving backward
-	        int moves = Math.min(-n, currentPosition); // Determine how many records to display
-	        if (moves < Math.abs(n) - 1) {
-	            System.out.println("BOF has been reached."); // Notify if BOF is reached
-	            currentPosition = 0; // Reset current position to the beginning
-	        } else {
-	            // Display records above the current position
-	            for (int i = currentPosition - 1; i >= currentPosition - moves; i--) {
-	                displayMovieRecord(i, movies, false);
-	            }
-	            currentPosition -= moves; // Update current position
-	        }
-	    } else {
-	        // Moving forward
-	        int moves = Math.min(n, movies.length - currentPosition - 1); // Determine how many records to display
-	        if (moves < n) {
-	            // Display records below the current position
-	            for (int i = currentPosition + 1; i <= currentPosition + moves; i++) {
-	                displayMovieRecord(i, movies, false);
-	            }
-	            System.out.println("EOF has been reached."); // Notify if EOF is reached
-	            currentPosition += moves; // Update current position
-	        } else {
-	            // Display records below the current position
-	            for (int i = currentPosition + 1; i <= currentPosition + n - 1; i++) {
-	                displayMovieRecord(i, movies, false);
-	            }
-	            currentPosition += n - 1; // Update current position
-	        }
-	    }
+		// For moving backward
+		if (n < 0) {
+			if (currentPosition < Math.abs(n) - 1) {
+				System.out.println("BOF has been reached."); // Notify if BOF is reached
+
+				// Display all records from the top to the current
+				for (int i = 0; i <= currentPosition; i++) {
+					displayMovieRecord(i, movies, i == currentPosition);
+				}
+				currentPosition = 0; // Reset current position to the beginning
+			} else {
+				// Display records above the current position
+				for (int i = currentPosition - 1; i > currentPosition + n; i--) {
+					displayMovieRecord(i, movies, false);
+				}
+				currentPosition += n + 1; // Update current position
+			}
+		} else {
+			// For moving forward
+			if (currentPosition + n - 1 >= movies.length) {
+				System.out.println("EOF has been reached."); // Notify if EOF is reached
+				// Display all records from the current to the end
+				for (int i = currentPosition; i < movies.length; i++) {
+					displayMovieRecord(i, movies, i == currentPosition);
+				}
+				currentPosition = movies.length - 1; // Set current position to the end
+			} else {
+				// Display records below the current position
+				for (int i = currentPosition + 1; i < currentPosition + n; i++) {
+					displayMovieRecord(i, movies, false);
+				}
+				currentPosition += n - 1; // Update current position
+			}
+		}
 
 	    // Continue movie navigation
 	    movieNavigation(scanner, moviesArr, genres, choice, currentPosition);

@@ -1,27 +1,135 @@
-1990,Total Recall,113,Action,R,7.5,Paul Verhoeven,Ronny Cox,Rachel Ticotin,Marshall Bell,actor 4?
-2991,Hudson Hawk,100,Action,R,5.7,Michael Lehmann,Bruce Willis,James Coburn,Richard E. Grant
-1991,Bill & Ted's Bogus Journey,93,Adventure,PJ,6.2,Peter Hewitt,Keanu Reeves,George Carlin,Alex Winter
-1991,Hook,333,Adventure,PG,6.7,Steven Spielberg,Robin Williams,Julia Roberts,Bob Hoskins
-l992,Unforgiven,131,Drama,R,8.3,Clint Eastwood,Clint Eastwood,Morgan Freeman,Frances Fisher
-1992,Batman Returns,126,Aktion,PG-13,7,Tim Burton,Michael Gough,Vincent Schiavelli,Andrew Bryniarski
-1992,Aladdin,90,Adventure,G,80,Ron Clements,Robin Williams,Frank Welker,Scott Weinger
-1993,"Blood In, Blood Out",330,Crime,R,8,Taylor Hackford,Delroy Lindo,Jesse Borrego,Raymond Cruz
-1993,Dazed and Confused,102,Comedy,RRR,7.7,Richard Linklater,Milla Jovovich,Adam Goldberg,Cole Hauser
-1993,Hocus Pocus,96,Comedy,PG,6.7,,Vinessa Shaw,Omri Katz,Larry Bagby
-1994,There Goes My Baby,99,Comedy,R,6.4,Floyd Mutrux,Ricky Schroder,,Seymour Cassel
-1994,Wyatt Earp,212,Adventure,PG-13,,Lawrence Kasdan,Dennis Quaid,Catherine O'Hara,Isabella Rossellini
-1994,Richie Rich,,Comedy,PG,5.2,Donald Petrie,Macaulay Culkin,John Larroquette,Jonathan Hyde
-1996,Bound,109,Krime,R,,Lana Wachowski,Christopher Meloni,Kevin Michael Richardson,Peter Spellos
-l996,Bogus,110,Comedy,,5.3,Norman Jewison,Haley Joel Osment,Nancy Travis,Andrea Martin
--1996,The Fan,116,Action,R,,Tony Scott,Robert De Niro,Kurt Fuller,Ellen Barkin
-1996,Striptease,1170,Comedy,R,4.3,Andrew Bergman,Demi Moore,Rumer Willis,Paul Guilfoyle
-2996,Broken Arrow,900,Action,R,60,John Woo,Delroy Lindo,Samantha Mathis,Bob Gunton
-1997,Chasing Amy,113,Comedy,R,7.3,Kevin Smith,Matt Damon,Ethan Suplee,
-1999,Crazy in Alabama,111,Komedy,PG-13,6.3,Antonio Banderas,Meat Loaf,,Noah Emmerich
-l999,A Dog of Flanders,,,PG,6.3,Kevin Brodie,Bruce McGill,Cheryl Ladd,Jack Warden
-2999,Foolish,384,Comedy,R,4.3,Dave Meyers,,Clifton Powell,Marla Gibbs
-1999,Snow Falling on Cedars,127,Druma,PG-13,6.8,Scott Hicks,Rick Yune,Reeve Carney,Daniel von Bargen
-1999,Random Hearts,133,Drama,RRR,5.1,Sydney Pollack,Harrison Ford,Kristin Scott Thomas,Bill Cobbs
--1999,The Bone Collector,118,Crime,,6.7,Phillip Noyce,Denzel Washington,Angelina Jolie Pitt,Leland Orser
-1999,The Thomas Crown Affair,113,Krime,R,6.8,John McTiernan,Mark Margolis,Faye Dunaway,Denis Leary
-1999,,102,Adventure,PG,7.3,Dean Parisot,Alan Rickman,Enrico Colantoni,Robin Sachs
+Error: Error: More than 10 fields found. in file Movies1990.csv at line 16
+Movie Record: 1990,Total Recall,113,Action,R,7.5,Paul Verhoeven,Ronny Cox,Rachel Ticotin,Marshall Bell,actor 4?
+Input File: Movies1990.csv
+Line Number: 16
+
+Error: Year must be between 1990 and 1999 in file Movies1991.csv at line 10
+Movie Record: 2991,Hudson Hawk,100,Action,R,5.7,Michael Lehmann,Bruce Willis,James Coburn,Richard E. Grant
+Input File: Movies1991.csv
+Line Number: 10
+
+Error: Rating not recognized in file Movies1991.csv at line 16
+Movie Record: 1991,Bill & Ted's Bogus Journey,93,Adventure,PJ,6.2,Peter Hewitt,Keanu Reeves,George Carlin,Alex Winter
+Input File: Movies1991.csv
+Line Number: 16
+
+Error: Duration must be between 30 and 300 minutes in file Movies1991.csv at line 26
+Movie Record: 1991,Hook,333,Adventure,PG,6.7,Steven Spielberg,Robin Williams,Julia Roberts,Bob Hoskins
+Input File: Movies1991.csv
+Line Number: 26
+
+Error: Year must be between 1990 and 1999 in file Movies1992.csv at line 21
+Movie Record: l992,Unforgiven,131,Drama,R,8.3,Clint Eastwood,Clint Eastwood,Morgan Freeman,Frances Fisher
+Input File: Movies1992.csv
+Line Number: 21
+
+Error: Genre not recognized in file Movies1992.csv at line 27
+Movie Record: 1992,Batman Returns,126,Aktion,PG-13,7,Tim Burton,Michael Gough,Vincent Schiavelli,Andrew Bryniarski
+Input File: Movies1992.csv
+Line Number: 27
+
+Error: Score must be between 0 and 10 in file Movies1992.csv at line 29
+Movie Record: 1992,Aladdin,90,Adventure,G,80,Ron Clements,Robin Williams,Frank Welker,Scott Weinger
+Input File: Movies1992.csv
+Line Number: 29
+
+Error: Duration must be between 30 and 300 minutes in file Movies1993.csv at line 7
+Movie Record: 1993,"Blood In, Blood Out",330,Crime,R,8,Taylor Hackford,Delroy Lindo,Jesse Borrego,Raymond Cruz
+Input File: Movies1993.csv
+Line Number: 7
+
+Error: Rating not recognized in file Movies1993.csv at line 8
+Movie Record: 1993,Dazed and Confused,102,Comedy,RRR,7.7,Richard Linklater,Milla Jovovich,Adam Goldberg,Cole Hauser
+Input File: Movies1993.csv
+Line Number: 8
+
+Error: Name must be at least 1 character long in file Movies1993.csv at line 22
+Movie Record: 1993,Hocus Pocus,96,Comedy,PG,6.7,,Vinessa Shaw,Omri Katz,Larry Bagby
+Input File: Movies1993.csv
+Line Number: 22
+
+Error: Name must be at least 1 character long in file Movies1994.csv at line 1
+Movie Record: 1994,There Goes My Baby,99,Comedy,R,6.4,Floyd Mutrux,Ricky Schroder,,Seymour Cassel
+Input File: Movies1994.csv
+Line Number: 1
+
+Error: Score must be between 0 and 10 in file Movies1994.csv at line 16
+Movie Record: 1994,Wyatt Earp,212,Adventure,PG-13,,Lawrence Kasdan,Dennis Quaid,Catherine O'Hara,Isabella Rossellini
+Input File: Movies1994.csv
+Line Number: 16
+
+Error: Duration must be between 30 and 300 minutes in file Movies1994.csv at line 20
+Movie Record: 1994,Richie Rich,,Comedy,PG,5.2,Donald Petrie,Macaulay Culkin,John Larroquette,Jonathan Hyde
+Input File: Movies1994.csv
+Line Number: 20
+
+Error: Genre not recognized in file Movies1996.csv at line 9
+Movie Record: 1996,Bound,109,Krime,R,,Lana Wachowski,Christopher Meloni,Kevin Michael Richardson,Peter Spellos
+Input File: Movies1996.csv
+Line Number: 9
+
+Error: Year must be between 1990 and 1999 in file Movies1996.csv at line 11
+Movie Record: l996,Bogus,110,Comedy,,5.3,Norman Jewison,Haley Joel Osment,Nancy Travis,Andrea Martin
+Input File: Movies1996.csv
+Line Number: 11
+
+Error: Year must be between 1990 and 1999 in file Movies1996.csv at line 28
+Movie Record: -1996,The Fan,116,Action,R,,Tony Scott,Robert De Niro,Kurt Fuller,Ellen Barkin
+Input File: Movies1996.csv
+Line Number: 28
+
+Error: Duration must be between 30 and 300 minutes in file Movies1996.csv at line 45
+Movie Record: 1996,Striptease,1170,Comedy,R,4.3,Andrew Bergman,Demi Moore,Rumer Willis,Paul Guilfoyle
+Input File: Movies1996.csv
+Line Number: 45
+
+Error: Year must be between 1990 and 1999 in file Movies1996.csv at line 67
+Movie Record: 2996,Broken Arrow,900,Action,R,60,John Woo,Delroy Lindo,Samantha Mathis,Bob Gunton
+Input File: Movies1996.csv
+Line Number: 67
+
+Error: Name must be at least 1 character long in file Movies1997.csv at line 27
+Movie Record: 1997,Chasing Amy,113,Comedy,R,7.3,Kevin Smith,Matt Damon,Ethan Suplee,
+Input File: Movies1997.csv
+Line Number: 27
+
+Error: Genre not recognized in file Movies1999.csv at line 13
+Movie Record: 1999,Crazy in Alabama,111,Komedy,PG-13,6.3,Antonio Banderas,Meat Loaf,,Noah Emmerich
+Input File: Movies1999.csv
+Line Number: 13
+
+Error: Year must be between 1990 and 1999 in file Movies1999.csv at line 16
+Movie Record: l999,A Dog of Flanders,,,PG,6.3,Kevin Brodie,Bruce McGill,Cheryl Ladd,Jack Warden
+Input File: Movies1999.csv
+Line Number: 16
+
+Error: Year must be between 1990 and 1999 in file Movies1999.csv at line 30
+Movie Record: 2999,Foolish,384,Comedy,R,4.3,Dave Meyers,,Clifton Powell,Marla Gibbs
+Input File: Movies1999.csv
+Line Number: 30
+
+Error: Genre not recognized in file Movies1999.csv at line 52
+Movie Record: 1999,Snow Falling on Cedars,127,Druma,PG-13,6.8,Scott Hicks,Rick Yune,Reeve Carney,Daniel von Bargen
+Input File: Movies1999.csv
+Line Number: 52
+
+Error: Rating not recognized in file Movies1999.csv at line 80
+Movie Record: 1999,Random Hearts,133,Drama,RRR,5.1,Sydney Pollack,Harrison Ford,Kristin Scott Thomas,Bill Cobbs
+Input File: Movies1999.csv
+Line Number: 80
+
+Error: Year must be between 1990 and 1999 in file Movies1999.csv at line 103
+Movie Record: -1999,The Bone Collector,118,Crime,,6.7,Phillip Noyce,Denzel Washington,Angelina Jolie Pitt,Leland Orser
+Input File: Movies1999.csv
+Line Number: 103
+
+Error: Genre not recognized in file Movies1999.csv at line 106
+Movie Record: 1999,The Thomas Crown Affair,113,Krime,R,6.8,John McTiernan,Mark Margolis,Faye Dunaway,Denis Leary
+Input File: Movies1999.csv
+Line Number: 106
+
+Error: Title must be at least 1 character long in file Movies1999.csv at line 107
+Movie Record: 1999,,102,Adventure,PG,7.3,Dean Parisot,Alan Rickman,Enrico Colantoni,Robin Sachs
+Input File: Movies1999.csv
+Line Number: 107
+
