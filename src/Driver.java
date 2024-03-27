@@ -559,7 +559,7 @@ public class Driver {
 			displaySubMenu(scanner, moviesArr, genres);
 			break;
 		case "n":
-			movieNavigation(scanner, moviesArr, genres, choice);
+			movieNavigation(scanner, moviesArr, genres, choice, 0);
 			break;
 		case "x":
 			System.out.println("Goodbye!");
@@ -607,87 +607,86 @@ public class Driver {
 	/**
 	 * Handles movie navigation based on user input.
 	 *
-	 * @param scanner   Scanner object for user input.
-	 * @param moviesArr 2D array containing movie records.
-	 * @param genres    Array of genres.
-	 * @param choice    Index of the selected genre.
+	 * @param scanner        Scanner object for user input.
+	 * @param moviesArr      2D array containing movie records.
+	 * @param genres         Array of genres.
+	 * @param choice         Index of the selected genre.
+	 * @param currentPosition Current position within the movie array.
 	 */
-	public static void movieNavigation(Scanner scanner, Movie[][] moviesArr, String[] genres, int choice) {
-		// Display the movie navigation menu
-		System.out.println("-----------------------------\n\t\tMovie Navigation\n-----------------------------");
-		String genre = genres[choice];
-		System.out.println("Navigating " + genre + " movies (" + moviesArr[choice].length + ")");
-		System.out.print("Enter Your Choice: ");
+	public static void movieNavigation(Scanner scanner, Movie[][] moviesArr, String[] genres, int choice, int currentPosition) {
+	    // Display the movie navigation menu
+	    System.out.println("-----------------------------\n\t\tMovie Navigation\n-----------------------------");
+	    String genre = genres[choice];
+	    System.out.println("Navigating " + genre + " movies (" + moviesArr[choice].length + ")");
+	    System.out.print("Enter Your Choice: ");
 
-		try {
-			int input = Integer.parseInt(scanner.nextLine());
-			// Call navigateMovies method based on user input
-			navigateMovies(input, moviesArr[choice], choice, scanner, moviesArr, genres);
-		} catch (NumberFormatException e) {
-			System.out.println("Invalid input. Please enter an integer.");
-			movieNavigation(scanner, moviesArr, genres, choice);
-		}
+	    try {
+	        int input = Integer.parseInt(scanner.nextLine());
+	        // Call navigateMovies method based on user input
+	        navigateMovies(input, moviesArr[choice], choice, scanner, moviesArr, genres, currentPosition);
+	    } catch (NumberFormatException e) {
+	        System.out.println("Invalid input. Please enter an integer.");
+	        movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
+	    }
 	}
-
 	/**
 	 * Navigates through movie records based on user input.
 	 *
-	 * @param n         Number of records to navigate.
-	 * @param movies    Array of Movie objects.
-	 * @param choice    Index of the selected genre.
-	 * @param scanner   Scanner object for user input.
-	 * @param moviesArr 2D array containing movie records.
-	 * @param genres    Array of genres.
+	 * @param n              Number of records to navigate.
+	 * @param movies         Array of Movie objects.
+	 * @param choice         Index of the selected genre.
+	 * @param scanner        Scanner object for user input.
+	 * @param moviesArr      2D array containing movie records.
+	 * @param genres         Array of genres.
+	 * @param currentPosition Current position within the movie array.
 	 */
 	public static void navigateMovies(int n, Movie[] movies, int choice, Scanner scanner, Movie[][] moviesArr,
-			String[] genres) {
-		int currentPosition = 0; // Current position within the movie array
+	        String[] genres, int currentPosition) {
+	    // Check if the user wants to end the viewing session
+	    if (n == 0) {
+	        // End the viewing session and display the main menu again
+	        displayMainMenu(scanner, moviesArr, genres, choice);
+	        return; // Exit the method
+	    }
 
-		// Check if the user wants to end the viewing session
-		if (n == 0) {
-			// End the viewing session and display the main menu again
-			displayMainMenu(scanner, moviesArr, genres, choice);
-			return; // Exit the method
-		}
+	    // Display the current movie record
+	    displayMovieRecord(currentPosition, movies, true); // Highlight current movie
 
-		// Display the current movie record
-		displayMovieRecord(currentPosition, movies, true); // Highlight current movie
+	    // Adjust the navigation based on the value of n
+	    if (n < 0) {
+	        // Moving backward
+	        int moves = Math.min(-n, currentPosition); // Determine how many records to display
+	        if (moves < Math.abs(n) - 1) {
+	            System.out.println("BOF has been reached."); // Notify if BOF is reached
+	            currentPosition = 0; // Reset current position to the beginning
+	        } else {
+	            // Display records above the current position
+	            for (int i = currentPosition - 1; i >= currentPosition - moves; i--) {
+	                displayMovieRecord(i, movies, false);
+	            }
+	            currentPosition -= moves; // Update current position
+	        }
+	    } else {
+	        // Moving forward
+	        int moves = Math.min(n, movies.length - currentPosition - 1); // Determine how many records to display
+	        if (moves < n) {
+	            // Display records below the current position
+	            for (int i = currentPosition + 1; i <= currentPosition + moves; i++) {
+	                displayMovieRecord(i, movies, false);
+	            }
+	            System.out.println("EOF has been reached."); // Notify if EOF is reached
+	            currentPosition += moves; // Update current position
+	        } else {
+	            // Display records below the current position
+	            for (int i = currentPosition + 1; i <= currentPosition + n - 1; i++) {
+	                displayMovieRecord(i, movies, false);
+	            }
+	            currentPosition += n - 1; // Update current position
+	        }
+	    }
 
-		// Adjust the navigation based on the value of n
-		if (n < 0) {
-			// Moving backward
-			int moves = Math.min(-n, currentPosition); // Determine how many records to display
-			if (moves < Math.abs(n) - 1) {
-				System.out.println("BOF has been reached."); // Notify if BOF is reached
-				currentPosition = 0; // Reset current position to the beginning
-			} else {
-				// Display records above the current position
-				for (int i = currentPosition - 1; i >= currentPosition - moves; i--) {
-					displayMovieRecord(i, movies, false);
-				}
-				currentPosition -= moves; // Update current position
-			}
-		} else {
-			// Moving forward
-			int moves = Math.min(n, movies.length - currentPosition - 1); // Determine how many records to display
-			if (moves < n) {
-				// Display records below the current position
-				for (int i = currentPosition + 1; i <= currentPosition + moves; i++) {
-					displayMovieRecord(i, movies, false);
-				}
-				System.out.println("EOF has been reached."); // Notify if EOF is reached
-				currentPosition += moves; // Update current position
-			} else {
-				// Display records below the current position
-				for (int i = currentPosition + 1; i <= currentPosition + n - 1; i++) {
-					displayMovieRecord(i, movies, false);
-				}
-				currentPosition += n - 1; // Update current position
-			}
-		}
-
-		// Continue movie navigation
-		movieNavigation(scanner, moviesArr, genres, choice);
+	    // Continue movie navigation
+	    movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
 	}
 
 	/**
