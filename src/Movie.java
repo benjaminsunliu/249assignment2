@@ -1,3 +1,9 @@
+// -----------------------------------------------------
+// Assignment 2
+// Question: Movie class
+// Written by: Vincent de Serres-40272920 and Benjamin Liu-
+// -----------------------------------------------------
+
 import java.io.Serializable;
 
 public class Movie implements Serializable {
@@ -111,7 +117,7 @@ public class Movie implements Serializable {
 
     @Override
     public String toString() {
-        return "\tYear: " + year + "\n\tTitle: " + title + "\n\tDuration: " + duration + "\n\tGenre: " + genre + "\n\tRating: " + rating + "\n\tScore: " + score + "\n\tDirector: " + director + "\n\tActor1: " + actor1 + "\n\tActor2: " + actor2 + "\n\tActor3: " + actor3;
+        return "Year: " + year + "\tTitle: " + title + "\tDuration: " + duration + "\tGenre: " + genre + "\tRating: " + rating + "\tScore: " + score + "\tDirector: " + director + "\tActor1: " + actor1 + "\tActor2: " + actor2 + "\tActor3: " + actor3;
     }
     @Override
     public boolean equals(Object obj) {
