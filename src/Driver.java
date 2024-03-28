@@ -4,7 +4,7 @@
 // Written by: Vincent de Serres-40272920 and Benjamin Liu-40280899
 // -----------------------------------------------------
 /*General Explanation
-* */
+ * */
 
 import java.io.*;
 import java.util.Arrays;
@@ -41,10 +41,10 @@ public class Driver {
 		PrintWriter p1Manifest = new PrintWriter(new FileOutputStream("part1_manifest.txt"), true);
 
 		// Write input file names to part1_manifest.txt
-        for (String inputFile : inputFiles) {
-            p1Manifest.println(inputFile);
-            p1Manifest.flush();
-        }
+		for (String inputFile : inputFiles) {
+			p1Manifest.println(inputFile);
+			p1Manifest.flush();
+		}
 
 		// Close the PrintWriter for part1_manifest.txt
 		p1Manifest.close();
@@ -143,7 +143,7 @@ public class Driver {
 	/**
 	 * Splits a line of text into fields based on comma separators, handling quoted
 	 * fields properly.
-	 * 
+	 *
 	 * @param line The input line to be split.
 	 * @return An array of fields extracted from the input line.
 	 * @throws ExcessFieldsException  If more than 10 fields are found in the input
@@ -207,11 +207,11 @@ public class Driver {
 			throw new MissingFieldsException("Error: Missing fields. Expected 10, but found " + fieldCount + ".");
 		}
 
-        // Since fieldCount is exactly 10, we can directly use tempFields
-        String[] fields = new String[fieldCount];
-        fields = Arrays.copyOf(tempFields, fieldCount); // Copy the first fieldCount elements from tempFields to fields
+		// Since fieldCount is exactly 10, we can directly use tempFields
+		String[] fields = new String[fieldCount];
+		fields = Arrays.copyOf(tempFields, fieldCount); // Copy the first fieldCount elements from tempFields to fields
 
-        //System.arraycopy(tempFields, 0, fields, 0, fieldCount);
+		//System.arraycopy(tempFields, 0, fields, 0, fieldCount);
 
 		return fields; // Return the array of fields
 	}
@@ -219,7 +219,7 @@ public class Driver {
 	/**
 	 * Processes a movie record, validates its fields, and writes it to the
 	 * corresponding genre file.
-	 * 
+	 *
 	 * @param line       The input line representing a movie record.
 	 * @param genres     An array of valid genres.
 	 * @param inputFile  The name of the input file being processed.
@@ -250,7 +250,7 @@ public class Driver {
 
 		// Handle Quotes
 		for (int i = 0; i < fields.length; i++) { // check for missing quotes and remove leading/trailing quotes if none
-													// are missing
+			// are missing
 			if (fields[i].startsWith("\"") && !(fields[i].endsWith("\""))
 					|| !(fields[i].startsWith("\"")) && fields[i].endsWith("\"")) {
 				throw new MissingQuotesException();
@@ -333,7 +333,7 @@ public class Driver {
 
 	/**
 	 * Sorts good movie records into separate genre files based on their genre.
-	 * 
+	 *
 	 * @param part2  The name of the input manifest file for part 2.
 	 * @param genres An array of valid genres.
 	 * @throws FileNotFoundException  If the input file containing good movie
@@ -384,7 +384,7 @@ public class Driver {
 
 	/**
 	 * Checks if a string represents an integer.
-	 * 
+	 *
 	 * @param str The string to be checked.
 	 * @return {@code true} if the string represents an integer, {@code false}
 	 *         otherwise.
@@ -403,7 +403,7 @@ public class Driver {
 
 	/**
 	 * Checks if a string represents a double.
-	 * 
+	 *
 	 * @param str The string to be checked.
 	 * @return {@code true} if the string represents a double, {@code false}
 	 *         otherwise.
@@ -423,7 +423,7 @@ public class Driver {
 	/**
 	 * Reads CSV files containing good movie records, serializes them, and creates a
 	 * manifest file for part 3.
-	 * 
+	 *
 	 * @param part2 The name of the input manifest file for part 2.
 	 * @return The path of the output manifest file for part 3.
 	 */
@@ -497,7 +497,7 @@ public class Driver {
 	/**
 	 * Reads serialized movie data, deserializes it, and returns a 2D array of Movie
 	 * objects.
-	 * 
+	 *
 	 * @param part3  The name of the input manifest file for part 3.
 	 * @param genres An array of valid genres.
 	 * @return A 2D array containing Movie objects grouped by genre.
@@ -512,12 +512,12 @@ public class Driver {
 			while (fileScanner.hasNextLine()) {
 				int arrsize = 0;
 				// Count the number of movies for each genre
-                for (String genre : genres) {
-                    if (countScanner.nextLine().contains(genre)) {
-                        arrsize++;
-                    }
+				for (String genre : genres) {
+					if (countScanner.nextLine().contains(genre)) {
+						arrsize++;
+					}
 
-                }
+				}
 				// Initialize the 2D array to store movies
 				movies = new Movie[arrsize][];
 
@@ -559,19 +559,19 @@ public class Driver {
 		System.out.print("Enter your choice: ");
 		String input = scanner.nextLine();
 		switch (input.toLowerCase()) {
-		case "s":
-			displaySubMenu(scanner, moviesArr, genres);
-			break;
-		case "n":
-			movieNavigation(scanner, moviesArr, genres, choice, 0);
-			break;
-		case "x":
-			System.out.println("Goodbye!");
-			System.exit(0);
-			break;
-		default:
-			System.out.println("Invalid input. Please try again.");
-			displayMainMenu(scanner, moviesArr, genres, choice);
+			case "s":
+				displaySubMenu(scanner, moviesArr, genres);
+				break;
+			case "n":
+				movieNavigation(scanner, moviesArr, genres, choice, 0);
+				break;
+			case "x":
+				System.out.println("Goodbye!");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Invalid input. Please try again.");
+				displayMainMenu(scanner, moviesArr, genres, choice);
 		}
 	}
 
@@ -618,20 +618,20 @@ public class Driver {
 	 * @param currentPosition Current position within the movie array.
 	 */
 	public static void movieNavigation(Scanner scanner, Movie[][] moviesArr, String[] genres, int choice, int currentPosition) {
-	    // Display the movie navigation menu
-	    System.out.println("-----------------------------\n\t\tMovie Navigation\n-----------------------------");
-	    String genre = genres[choice];
-	    System.out.println("Navigating " + genre + " movies (" + moviesArr[choice].length + ")");
-	    System.out.print("Enter Your Choice: ");
+		// Display the movie navigation menu
+		System.out.println("-----------------------------\n\t\tMovie Navigation\n-----------------------------");
+		String genre = genres[choice];
+		System.out.println("Navigating " + genre + " movies (" + moviesArr[choice].length + ")");
+		System.out.print("Enter Your Choice: ");
 
-	    try {
-	        int input = Integer.parseInt(scanner.nextLine());
-	        // Call navigateMovies method based on user input
-	        navigateMovies(input, moviesArr[choice], choice, scanner, moviesArr, genres, currentPosition);
-	    } catch (NumberFormatException e) {
-	        System.out.println("Invalid input. Please enter an integer.");
-	        movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
-	    }
+		try {
+			int input = Integer.parseInt(scanner.nextLine());
+			// Call navigateMovies method based on user input
+			navigateMovies(input, moviesArr[choice], choice, scanner, moviesArr, genres, currentPosition);
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid input. Please enter an integer.");
+			movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
+		}
 	}
 	/**
 	 * Navigates through movie records based on user input.
@@ -645,24 +645,19 @@ public class Driver {
 	 * @param currentPosition Current position within the movie array.
 	 */
 	public static void navigateMovies(int n, Movie[] movies, int choice, Scanner scanner, Movie[][] moviesArr,
-	        String[] genres, int currentPosition) {
-	    // Check if the user wants to end the viewing session
-	    if (n == 0) {
-	        // End the viewing session and display the main menu again
-	        displayMainMenu(scanner, moviesArr, genres, choice);
-	        return; // Exit the method
-	    }
+									  String[] genres, int currentPosition) {
+		// Check if the user wants to end the viewing session
+		if (n == 0) {
+			// End the viewing session and display the main menu again
+			displayMainMenu(scanner, moviesArr, genres, choice);
+			return; // Exit the method
+		}
 		if (movies.length == 0) {
 			System.out.println("There are no movies in this genre.");
 			displayMainMenu(scanner, moviesArr, genres, choice); // Go back to the main menu
 			return; // Exit the method
 		}
-
-	    // Display the current movie record
-		if(currentPosition >= Math.abs(n) - 1 && currentPosition + n - 1 < movies.length){
-			displayMovieRecord(currentPosition, movies, true); // Highlight current movie
-		}
-	    // Adjust the navigation based on the value of n
+		// Adjust the navigation based on the value of n
 		// For moving backward
 		if (n < 0) {
 			if (currentPosition < Math.abs(n) - 1) {
@@ -670,13 +665,14 @@ public class Driver {
 
 				// Display all records from the top to the current
 				for (int i = 0; i <= currentPosition; i++) {
-					displayMovieRecord(i, movies, i == currentPosition);
+					displayMovieRecord(i, movies);
 				}
 				currentPosition = 0; // Reset current position to the beginning
 			} else {
+				displayMovieRecord(currentPosition, movies); // Highlight current movie
 				// Display records above the current position
 				for (int i = currentPosition - 1; i > currentPosition + n; i--) {
-					displayMovieRecord(i, movies, false);
+					displayMovieRecord(i, movies);
 				}
 				currentPosition += n + 1; // Update current position
 			}
@@ -686,20 +682,21 @@ public class Driver {
 				System.out.println("EOF has been reached."); // Notify if EOF is reached
 				// Display all records from the current to the end
 				for (int i = currentPosition; i < movies.length; i++) {
-					displayMovieRecord(i, movies, i == currentPosition);
+					displayMovieRecord(i, movies);
 				}
 				currentPosition = movies.length - 1; // Set current position to the end
 			} else {
+				displayMovieRecord(currentPosition, movies); // Highlight current movie
 				// Display records below the current position
 				for (int i = currentPosition + 1; i < currentPosition + n; i++) {
-					displayMovieRecord(i, movies, false);
+					displayMovieRecord(i, movies);
 				}
 				currentPosition += n - 1; // Update current position
 			}
 		}
 
-	    // Continue movie navigation
-	    movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
+		// Continue movie navigation
+		movieNavigation(scanner, moviesArr, genres, choice, currentPosition);
 	}
 
 	/**
@@ -707,10 +704,8 @@ public class Driver {
 	 *
 	 * @param index             Index of the movie record to display.
 	 * @param movies            Array of Movie objects.
-	 * @param isCurrentPosition True if the movie is the current position, false
-	 *                          otherwise.
 	 */
-	public static void displayMovieRecord(int index, Movie[] movies, boolean isCurrentPosition) {
+	public static void displayMovieRecord(int index, Movie[] movies) {
 		// Display movie record
 		System.out.println(movies[index].toString());
 	}
