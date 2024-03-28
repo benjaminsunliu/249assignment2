@@ -2,9 +2,12 @@
 // Assignment 2
 // Question: Movie class
 // Written by: Vincent de Serres-40272920 and Benjamin Liu-40280899
+// For COMP 249 Section S – Winter 2024
 // -----------------------------------------------------
 /*General Explanation
- * */
+ * The Movie class serves as a class to represent movies. It implements the Serializable inteface which allows objects from this class to be serialized and deserialized.
+ * It contains attributes specific to movies, mutators and constructors.
+ * The toString() and equals() methods are overriden for personalized functionality. */
 
 import java.io.Serializable;
 

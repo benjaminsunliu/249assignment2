@@ -2,9 +2,20 @@
 // Assignment 2
 // Question: Driver class
 // Written by: Vincent de Serres-40272920 and Benjamin Liu-40280899
+// For COMP 249 Section S – Winter 2024
 // -----------------------------------------------------
 /*General Explanation
- * */
+ * This is a movie database management application.
+ * The application reads movie records from CSV files, validates the records, and writes valid and invalid records to separate files.
+ * The valid records are then sorted into separate genre files based on their genre.
+ * The records are then serialized and deserialized, and the user can navigate through the records.
+ * The do_part1 method processes the input files, validating records, and writing valid and invalid records to separate files.
+ * It uses helper methods like splitLine and processMovieRecord to split each line into fields and process each movie record, respectively.
+ * The do_part2 method reads the CSV files containing good movie records, serializes them, and creates a manifest file for part 3.
+ * The do_part3 method reads serialized movie data, deserializes it, and returns a 2D array of Movie objects.
+ * The displayMainMenu, displaySubMenu, and movieNavigation methods handle user interaction, displaying menus and handling user input to navigate through the movie records.
+ * The navigateMovies method navigates through movie records based on user input.
+ * The file also includes several custom exception classes to handle specific error conditions that may occur during the processing of movie records.*/
 
 import java.io.*;
 import java.util.Arrays;
@@ -29,7 +40,7 @@ public class Driver {
 		Scanner scanner = new Scanner(System.in);
 
 		// Array of input file names
-		String[] inputFiles = { "errorFile.csv", "Movies1990.csv", "Movies1991.csv", "Movies1992.csv", "Movies1993.csv",
+		String[] inputFiles = {"Movies1990.csv", "Movies1991.csv", "Movies1992.csv", "Movies1993.csv",
 				"Movies1994.csv", "Movies1995.csv", "Movies1996.csv", "Movies1997.csv", "Movies1998.csv",
 				"Movies1999.csv" };
 
