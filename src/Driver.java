@@ -164,7 +164,7 @@ public class Driver {
 	 *                                line.
 	 */
 	public static String[] splitLine(String line)
-			throws ExcessFieldsException, MissingQuotesException, MissingFieldsException, MissingFieldsException {
+			throws ExcessFieldsException, MissingQuotesException, MissingFieldsException {
 		// Assume there's a reasonable upper limit to detect excess fields
 		String[] tempFields = new String[11]; // Temporary array to hold fields, allowing one extra for potential excess
 		int fieldCount = 0; // Counter to keep track of the number of fields processed
@@ -187,7 +187,7 @@ public class Driver {
 				tempFields[fieldCount] = currentField; // Store the accumulated field
 				fieldCount++; // Increment the field count
 				if (fieldCount > 10) { // Check for excess fields
-					throw new ExcessFieldsException("Error: More than 10 fields found.");
+					throw new ExcessFieldsException("More than 10 fields found.");
 				}
 				currentField = ""; // Reset the current field for the next iteration
 			} else {
@@ -197,7 +197,7 @@ public class Driver {
 
 		// Check for unclosed quotes at the end of the line
 		if (inQuotes) {
-			throw new MissingQuotesException("Error: Missing closing quote in line.");
+			throw new MissingQuotesException("Missing closing quote in line.");
 		}
 
 		// Add the last field since it won't be followed by a comma
@@ -209,13 +209,13 @@ public class Driver {
 			if (line.endsWith(",")) { // If the line ends with a comma, then there is an empty field at the end
 				fieldCount--; // Decrement fieldCount to remove the empty field
 			} else { // If the line does not end with a comma, then there is an excess field
-				throw new ExcessFieldsException("Error: More than 10 fields found.");
+				throw new ExcessFieldsException("More than 10 fields found.");
 			}
 		}
 
 		// Check for the correct number of fields
 		if (fieldCount < 10) {
-			throw new MissingFieldsException("Error: Missing fields. Expected 10, but found " + fieldCount + ".");
+			throw new MissingFieldsException("Missing fields. Expected 10, but found " + fieldCount + ".");
 		}
 
 		// Since fieldCount is exactly 10, we can directly use tempFields

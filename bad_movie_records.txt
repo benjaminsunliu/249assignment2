@@ -1,4 +1,4 @@
-Error: Error: More than 10 fields found. in file Movies1990.csv at line 16
+Error: More than 10 fields found. in file Movies1990.csv at line 16
 Movie Record: 1990,Total Recall,113,Action,R,7.5,Paul Verhoeven,Ronny Cox,Rachel Ticotin,Marshall Bell,actor 4?
 Input File: Movies1990.csv
 Line Number: 16
